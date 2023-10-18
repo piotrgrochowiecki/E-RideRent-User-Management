@@ -4,11 +4,11 @@ import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.User;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.lang.Nullable;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Repository
@@ -17,7 +17,6 @@ public class UserEntityRepository implements UserRepository {
 
     private final UserCRUDRepository userCRUDRepository;
     private final UserMapper userMapper;
-    private final PasswordEncoder passwordEncoder;
 
     @Override
     public Optional<User> findByEmail(@Nullable String email) {
@@ -28,11 +27,11 @@ public class UserEntityRepository implements UserRepository {
     @Override
     public User save(@Nullable User user) {
         assert user != null;
-        String encodedPassword = passwordEncoder.encode(user.password());
         UserEntity userEntity = userMapper.mapToEntity(user);
-        userEntity.setPassword(encodedPassword);
-        userCRUDRepository.save(userEntity);
-        return user;
+        UUID uuid = UUID.randomUUID();
+        userEntity.setUuid(uuid.toString());
+        UserEntity registeredUserEntity = userCRUDRepository.save(userEntity);
+        return userMapper.mapToModel(registeredUserEntity);
     }
 
     @Override

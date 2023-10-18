@@ -1,5 +1,7 @@
 package com.piotrgrochowiecki.eriderent.eriderent_user_management.domain;
 
+import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.exception.NotFoundRuntimeException;
+import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.exception.UserAlreadyExistsRuntimeException;
 import lombok.AllArgsConstructor;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
@@ -42,7 +44,7 @@ public class UserService {
     }
 
     private boolean doesUserAlreadyExist(String email) {
-        return userRepository.findByEmail(email).isEmpty();
+        return userRepository.findByEmail(email).isPresent();
     }
 
 

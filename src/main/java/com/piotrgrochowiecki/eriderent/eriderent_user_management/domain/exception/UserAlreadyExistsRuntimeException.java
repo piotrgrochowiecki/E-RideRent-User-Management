@@ -1,4 +1,4 @@
-package com.piotrgrochowiecki.eriderent.eriderent_user_management.domain;
+package com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.exception;
 
 public class UserAlreadyExistsRuntimeException extends RuntimeException {
 
