@@ -28,6 +28,7 @@ public class UserEntity {
 
     String lastName;
 
+    @Column(unique = true)
     String email;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
