@@ -3,7 +3,7 @@ package com.piotrgrochowiecki.eriderent.eriderent_user_management.api.rest;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.api.dto.UserRegisterRequestDto;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.api.dto.UserResponseDto;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.api.mapper.UserApiMapper;
-import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.User;
+import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.model.User;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

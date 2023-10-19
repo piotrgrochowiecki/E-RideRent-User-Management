@@ -1,8 +1,11 @@
-package com.piotrgrochowiecki.eriderent.eriderent_user_management.data;
+package com.piotrgrochowiecki.eriderent.eriderent_user_management.data.DBadapter;
 
-import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.User;
-import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.UserRepository;
+import com.piotrgrochowiecki.eriderent.eriderent_user_management.data.entity.UserEntity;
+import com.piotrgrochowiecki.eriderent.eriderent_user_management.data.mapper.UserMapper;
+import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.model.User;
+import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.port.UserRepository;
 import lombok.AllArgsConstructor;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;
 
@@ -30,6 +33,8 @@ public class UserEntityRepository implements UserRepository {
         UserEntity userEntity = userMapper.mapToEntity(user);
         UUID uuid = UUID.randomUUID();
         userEntity.setUuid(uuid.toString());
+        String hashedPassword = DigestUtils.sha256Hex(user.password());
+        userEntity.setPassword(hashedPassword);
         UserEntity registeredUserEntity = userCRUDRepository.save(userEntity);
         return userMapper.mapToModel(registeredUserEntity);
     }

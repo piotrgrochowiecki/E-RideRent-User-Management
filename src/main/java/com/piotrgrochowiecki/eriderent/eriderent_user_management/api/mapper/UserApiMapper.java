@@ -2,7 +2,7 @@ package com.piotrgrochowiecki.eriderent.eriderent_user_management.api.mapper;
 
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.api.dto.UserRegisterRequestDto;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.api.dto.UserResponseDto;
-import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.User;
+import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.model.User;
 import org.springframework.stereotype.Component;
 
 @Component
