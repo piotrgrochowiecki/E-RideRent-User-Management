@@ -2,6 +2,8 @@ package com.piotrgrochowiecki.eriderent.eriderent_user_management.domain;
 
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.exception.NotFoundRuntimeException;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.exception.UserAlreadyExistsRuntimeException;
+import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.model.User;
+import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.port.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;

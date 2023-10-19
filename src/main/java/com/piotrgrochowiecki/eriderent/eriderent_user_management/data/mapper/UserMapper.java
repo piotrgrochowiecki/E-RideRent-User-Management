@@ -1,6 +1,7 @@
-package com.piotrgrochowiecki.eriderent.eriderent_user_management.data;
+package com.piotrgrochowiecki.eriderent.eriderent_user_management.data.mapper;
 
-import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.User;
+import com.piotrgrochowiecki.eriderent.eriderent_user_management.data.entity.UserEntity;
+import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.model.User;
 import org.springframework.stereotype.Component;
 
 @Component

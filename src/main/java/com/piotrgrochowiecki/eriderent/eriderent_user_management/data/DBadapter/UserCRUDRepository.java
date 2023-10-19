@@ -1,5 +1,6 @@
-package com.piotrgrochowiecki.eriderent.eriderent_user_management.data;
+package com.piotrgrochowiecki.eriderent.eriderent_user_management.data.DBadapter;
 
+import com.piotrgrochowiecki.eriderent.eriderent_user_management.data.entity.UserEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.piotrgrochowiecki.eriderent.eriderent_user_management.data;
+package com.piotrgrochowiecki.eriderent.eriderent_user_management.data.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

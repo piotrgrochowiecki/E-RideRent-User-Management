@@ -1,5 +1,6 @@
-package com.piotrgrochowiecki.eriderent.eriderent_user_management.domain;
+package com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.port;
 
+import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.model.User;
 import org.springframework.lang.Nullable;
 
 import java.util.List;
