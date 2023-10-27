@@ -1,4 +1,4 @@
-package com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.port;
+package com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.repository;
 
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.model.User;
 import org.springframework.lang.Nullable;
@@ -17,5 +17,7 @@ public interface UserRepository {
     List<User> findAll();
 
     User save(User user);
+
+    boolean existsByEmail(String email);
 
 }

@@ -11,6 +11,7 @@ public record User(Long id,
                    String lastName,
                    String email,
                    LocalDate drivingLicenseIssueDate,
+                   Role role,
                    String password) {
 
 }

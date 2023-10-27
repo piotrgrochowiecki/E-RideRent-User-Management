@@ -15,6 +15,7 @@ public class UserMapper {
                 .lastName(user.lastName())
                 .email(user.email())
                 .drivingLicenseIssueDate(user.drivingLicenseIssueDate())
+                .role(user.role())
                 .password(user.password())
                 .build();
     }
@@ -27,6 +28,7 @@ public class UserMapper {
                 .lastName(userEntity.getLastName())
                 .email(userEntity.getEmail())
                 .drivingLicenseIssueDate(userEntity.getDrivingLicenseIssueDate())
+                .role(userEntity.getRole())
                 .password(userEntity.getPassword())
                 .build();
     }

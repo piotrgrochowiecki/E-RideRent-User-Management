@@ -3,9 +3,8 @@ package com.piotrgrochowiecki.eriderent.eriderent_user_management.domain;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.exception.NotFoundRuntimeException;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.exception.UserAlreadyExistsRuntimeException;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.model.User;
-import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.port.UserRepository;
+import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,38 +15,28 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public User registerNewUser(@Nullable User user) {
-        assert user != null;
-        if (doesUserAlreadyExist(user.email())) {
+    public User registerNewUser(User user) {
+        if (userRepository.existsByEmail(user.email())) {
             throw new UserAlreadyExistsRuntimeException(user.email());
         }
         userRepository.save(user);
         return user;
     }
 
-    public User getById(@Nullable Long id) {
-        assert id != null;
-        if(userRepository.findById(id).isEmpty()) {
-            throw new NotFoundRuntimeException(id.toString());
-        }
-        return userRepository.findById(id).get();
+    public User getById(Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new NotFoundRuntimeException(id.toString()));
     }
 
-    public User getByUuid(@Nullable String uuid) {
-        assert uuid != null;
-        if(userRepository.findByUuid(uuid).isEmpty()) {
-            throw new NotFoundRuntimeException(uuid);
-        }
-        return userRepository.findByUuid(uuid).get();
+    public User getByUuid(String uuid) {
+        return userRepository.findByUuid(uuid).orElseThrow(() -> new NotFoundRuntimeException(uuid));
+    }
+
+    public User getByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow(() -> new NotFoundRuntimeException(" "));
     }
 
     public List<User> getAll() {
         return userRepository.findAll();
     }
-
-    private boolean doesUserAlreadyExist(String email) {
-        return userRepository.findByEmail(email).isPresent();
-    }
-
 
 }
