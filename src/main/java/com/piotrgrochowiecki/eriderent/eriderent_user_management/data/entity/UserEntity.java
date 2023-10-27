@@ -1,5 +1,6 @@
 package com.piotrgrochowiecki.eriderent.eriderent_user_management.data.entity;
 
+import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.model.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -33,6 +34,9 @@ public class UserEntity {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate drivingLicenseIssueDate;
+
+    @Enumerated(value = EnumType.STRING)
+    Role role;
 
     String password;
 

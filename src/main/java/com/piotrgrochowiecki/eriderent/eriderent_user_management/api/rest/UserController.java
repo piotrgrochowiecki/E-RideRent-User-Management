@@ -1,5 +1,6 @@
 package com.piotrgrochowiecki.eriderent.eriderent_user_management.api.rest;
 
+import com.piotrgrochowiecki.eriderent.eriderent_user_management.api.dto.UserAuthenticateResponseDto;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.api.dto.UserRegisterRequestDto;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.api.dto.UserResponseDto;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.api.mapper.UserApiMapper;
@@ -19,10 +20,16 @@ public class UserController {
     private final UserService userService;
     private final UserApiMapper userApiMapper;
 
-    @GetMapping("{uuid}")
+    @GetMapping("uuid/{uuid}")
     public UserResponseDto getByUuid(@PathVariable @Nullable String uuid) {
         User user = userService.getByUuid(uuid);
         return userApiMapper.mapToUserResponseDto(user);
+    }
+
+    @GetMapping("email/{email}")
+    public UserAuthenticateResponseDto getByEmail(@PathVariable @Nullable String email) {
+        User user = userService.getByEmail(email);
+        return userApiMapper.mapToUserAuthenticateDto(user);
     }
 
     @PostMapping("create")
