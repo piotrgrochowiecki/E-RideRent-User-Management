@@ -5,7 +5,7 @@ import com.piotrgrochowiecki.eriderent.eriderent_user_management.api.dto.UserReg
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.api.dto.UserResponseDto;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.api.mapper.UserApiMapper;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.model.User;
-import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.UserService;
+import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
