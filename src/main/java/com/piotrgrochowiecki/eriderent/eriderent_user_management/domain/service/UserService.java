@@ -1,4 +1,4 @@
-package com.piotrgrochowiecki.eriderent.eriderent_user_management.domain;
+package com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.service;
 
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.exception.NotFoundRuntimeException;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.exception.UserAlreadyExistsRuntimeException;
@@ -32,7 +32,7 @@ public class UserService {
     }
 
     public User getByEmail(String email) {
-        return userRepository.findByEmail(email).orElseThrow(() -> new NotFoundRuntimeException(" "));
+        return userRepository.findByEmail(email).orElseThrow(() -> new NotFoundRuntimeException(email));
     }
 
     public List<User> getAll() {
