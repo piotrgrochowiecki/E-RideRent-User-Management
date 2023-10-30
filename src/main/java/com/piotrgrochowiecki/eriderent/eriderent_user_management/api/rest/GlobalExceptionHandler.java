@@ -1,7 +1,6 @@
 package com.piotrgrochowiecki.eriderent.eriderent_user_management.api.rest;
 
-import com.piotrgrochowiecki.eriderent.eriderent_user_management.api.dto.NotFoundRuntimeExceptionDto;
-import com.piotrgrochowiecki.eriderent.eriderent_user_management.api.dto.UserAlreadyExistsRuntimeExceptionDto;
+import com.piotrgrochowiecki.eriderent.eriderent_user_management.api.dto.RuntimeExceptionDto;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.exception.NotFoundRuntimeException;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.exception.UserAlreadyExistsRuntimeException;
 import org.springframework.http.HttpStatus;
@@ -18,8 +17,8 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundRuntimeException.class)
-    public NotFoundRuntimeExceptionDto handleNotFoundRuntimeException(NotFoundRuntimeException exception) {
-        return NotFoundRuntimeExceptionDto.builder()
+    public RuntimeExceptionDto handleNotFoundRuntimeException(NotFoundRuntimeException exception) {
+        return RuntimeExceptionDto.builder()
                 .message(exception.getMessage())
                 .timeStamp(LocalDateTime.now())
                 .build();
@@ -28,8 +27,8 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(UserAlreadyExistsRuntimeException.class)
-    public UserAlreadyExistsRuntimeExceptionDto handleUserAlreadyExistsRuntimeException(UserAlreadyExistsRuntimeException exception) {
-        return UserAlreadyExistsRuntimeExceptionDto.builder()
+    public RuntimeExceptionDto handleUserAlreadyExistsRuntimeException(UserAlreadyExistsRuntimeException exception) {
+        return RuntimeExceptionDto.builder()
                 .message(exception.getMessage())
                 .timeStamp(LocalDateTime.now())
                 .build();

@@ -5,6 +5,7 @@ import lombok.Builder;
 import java.time.LocalDateTime;
 
 @Builder
-public record UserAlreadyExistsRuntimeExceptionDto(String message, LocalDateTime timeStamp) {
+public record RuntimeExceptionDto(String message,
+                                  LocalDateTime timeStamp) {
 
 }
