@@ -1,12 +1,12 @@
 package com.piotrgrochowiecki.eriderent.eriderent_user_management.data.DBadapter;
 
+import com.piotrgrochowiecki.eriderent.eriderent_user_management.data.password.PasswordUtils;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.data.entity.UserEntity;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.data.mapper.UserMapper;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.model.User;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.lang.Nullable;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,7 +20,6 @@ public class UserEntityRepository implements UserRepository {
 
     private final UserCRUDRepository userCRUDRepository;
     private final UserMapper userMapper;
-    private final BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public Optional<User> findByEmail(@Nullable String email) {
@@ -34,7 +33,7 @@ public class UserEntityRepository implements UserRepository {
         UserEntity userEntity = userMapper.mapToEntity(user);
         UUID uuid = UUID.randomUUID();
         userEntity.setUuid(uuid.toString());
-        String hashedPassword = passwordEncoder.encode(user.password());
+        String hashedPassword = PasswordUtils.hashPassword(user.password());
         userEntity.setPassword(hashedPassword);
         UserEntity registeredUserEntity = userCRUDRepository.save(userEntity);
         return userMapper.mapToModel(registeredUserEntity);
