@@ -6,7 +6,6 @@ import com.piotrgrochowiecki.eriderent.eriderent_user_management.data.mapper.Use
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.model.User;
 import com.piotrgrochowiecki.eriderent.eriderent_user_management.domain.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,14 +21,13 @@ public class UserEntityRepository implements UserRepository {
     private final UserMapper userMapper;
 
     @Override
-    public Optional<User> findByEmail(@Nullable String email) {
+    public Optional<User> findByEmail(String email) {
         return userCRUDRepository.findByEmail(email)
                 .map(userMapper::mapToModel);
     }
 
     @Override
-    public User save(@Nullable User user) {
-        assert user != null;
+    public User save(User user) {
         UserEntity userEntity = userMapper.mapToEntity(user);
         UUID uuid = UUID.randomUUID();
         userEntity.setUuid(uuid.toString());
@@ -40,15 +38,13 @@ public class UserEntityRepository implements UserRepository {
     }
 
     @Override
-    public Optional<User> findById(@Nullable Long id) {
-        assert id != null;
+    public Optional<User> findById(Long id) {
         return userCRUDRepository.findById(id)
                 .map(userMapper::mapToModel);
     }
 
     @Override
-    public Optional<User> findByUuid(@Nullable String uuid) {
-        assert uuid != null;
+    public Optional<User> findByUuid(String uuid) {
         return userCRUDRepository.findByUuid(uuid)
                 .map(userMapper::mapToModel);
     }
