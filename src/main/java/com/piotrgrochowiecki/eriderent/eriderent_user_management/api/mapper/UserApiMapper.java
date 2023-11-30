@@ -22,6 +22,7 @@ public class UserApiMapper {
 
     public UserResponseDto mapToUserResponseDto(User user) {
         return UserResponseDto.builder()
+                .id(user.id())
                 .uuid(user.uuid())
                 .firstName(user.firstName())
                 .lastName(user.lastName())
