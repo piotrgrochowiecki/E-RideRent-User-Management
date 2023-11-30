@@ -26,7 +26,13 @@ public class UserController {
 
     @GetMapping("uuid/{uuid}")
     public UserResponseDto getByUuid(@PathVariable("uuid") @NotBlank String uuid) {
-        User user = userService.getByUuid(uuid); //TODO pomyśleć nad zamianą uuid na id
+        User user = userService.getByUuid(uuid);
+        return userApiMapper.mapToUserResponseDto(user);
+    }
+
+    @GetMapping("id/{id}")
+    public UserResponseDto getByUuid(@PathVariable("id") @NotNull Long id) {
+        User user = userService.getById(id);
         return userApiMapper.mapToUserResponseDto(user);
     }
 
@@ -39,7 +45,8 @@ public class UserController {
     @PostMapping("create")
     public ResponseEntity<UserResponseDto> register(@Valid @RequestBody UserRegisterRequestDto userRegisterRequestDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            bindingResult.getFieldErrors().forEach(fieldError -> System.out.println(fieldError.getField() + ": " + fieldError.getDefaultMessage() + "\n"));
+            bindingResult.getFieldErrors()
+                    .forEach(fieldError -> System.out.println(fieldError.getField() + ": " + fieldError.getDefaultMessage() + "\n"));
         }
         User userToBeRegistered = userApiMapper.mapToUser(userRegisterRequestDto);
         User registeredUser = userService.registerNewUser(userToBeRegistered);

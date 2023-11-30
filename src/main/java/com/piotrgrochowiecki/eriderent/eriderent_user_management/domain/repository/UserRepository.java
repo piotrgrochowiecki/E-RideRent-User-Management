@@ -8,11 +8,11 @@ import java.util.Optional;
 
 public interface UserRepository {
 
-    Optional<User> findByEmail(@Nullable String email);
+    Optional<User> findByEmail(String email);
 
-    Optional<User> findById(@Nullable Long id);
+    Optional<User> findById(Long id);
 
-    Optional<User> findByUuid(@Nullable String uuid);
+    Optional<User> findByUuid(String uuid);
 
     List<User> findAll();
 
